@@ -1,16 +1,35 @@
+/***********************************************
+ * purpose : To store all logic of the programs
+ *           
+ * @author  Sujit Chincholkar
+ * @version 1.0
+ * @since   24/08/2017          
+ ***********************************************/
 package com.bridgelabz.utility;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author bridgeit
+ *
+ */
 public class Utility {
 	static Scanner scanner = new Scanner(System.in);
 	static PrintWriter out = new PrintWriter(
 			new OutputStreamWriter(System.out), true);
+	
+	/**
+	 * This method prints given name 
+	 * with template Hello name ,How are you?
+	 * @param name -name to be print
+	 */
 	public static void printName(String name) {
 		String message="Hello​ ​ <<UserName>> ,​ How​ ​ are​ ​ you?";
 		Pattern pattern=Pattern.compile("<<UserName>>");
@@ -23,6 +42,11 @@ public class Utility {
 		}
 	}
 
+	/**This method randomly generate Head an Tail
+	 * and calculate their percentage and prints it.
+	 * 
+	 * @param noOftimes -number of times coin to be flip
+	 */
 	public static void flipCoin(int noOftimes) {
 		int countHead = 0, countTail = 0;
 		float percentH, percentT;
@@ -42,6 +66,11 @@ public class Utility {
 				+ "\nPercentage of Head=" + percentH);
 	}
 
+	/**This method checks if given year is leap 
+	 * year or not
+	 * @param year
+	 * @return returns true if year is leap else return false
+	 */
 	public static boolean isLeapYear(int year) {
 		boolean isLeapYear;
 		// divisible by 4
@@ -53,7 +82,12 @@ public class Utility {
 		return isLeapYear;
 
 	}
-
+	
+	/**This method prints power of two of each
+	 * from 0 to given number 
+	 * @param number -number upto which power of two will get printed
+	 * 
+	 */
 	public static void printPowerOfTwo(int number) {
 		double ans;
 		for (int power = 0; power <= number; power++) {
@@ -62,6 +96,11 @@ public class Utility {
 		}
 	}
 
+	/**This method return harmonic series upto given number
+	 * @param number -position upto which you want harmonic series
+	 * @return
+	 * retruns harmonic number genrated by harmonic series
+	 */
 	public static double getHarmonicNumber(int number) {
 		double hNumber = 0.0;
 		for (float i = 1; i <= number; i++) {
@@ -70,13 +109,16 @@ public class Utility {
 		return hNumber;
 	}
 
+	/**This method simulates gambler.It prints percentage of win and loss
+	 * @param stake -Initial amount
+	 * @param goal  -Amount you want to win
+	 * @param trials -Number of tries
+	 */
 	public static void gamblerSimulator(int stake, int goal, int trials) {
-		int bets = 0;
 		int wins = 0;
 
 		for (int t = 0; t < trials; t++) {
 			int cash = stake;
-			bets++;
 			while (cash > 0 && cash < goal) {
 				
 				if (Math.random() < 0.5)
@@ -88,36 +130,42 @@ public class Utility {
 				wins++;
 		}
 		// print results
-		System.out.println(wins + " wins out of " + bets);
+		System.out.println(wins + " wins out of " + trials);
 		System.out.println("Percent of games won = " + 100.0 * wins / trials);
 
 	}
 
-	public static void generateCoupon(int nRandoms) {
+	/**This method generates and prints N distinct random Coupons
+	 * @param numberOfRandoms -number of randoms to generate
+	 */
+	public static void generateCoupon(int numberOfRandoms) {
 		int randomCount = 1, randomNo, flag = 0, index = 1;
-		int a[] = new int[nRandoms];
-		a[0] = (int) (nRandoms * Math.random());
-		while (index < nRandoms) {
-			randomNo = (int) (Math.random() * nRandoms);
+		int arrayOfRandoms[] = new int[numberOfRandoms];
+		arrayOfRandoms[0] = (int) (numberOfRandoms * Math.random());
+		while (index < numberOfRandoms) {
+			randomNo = (int) (Math.random() * numberOfRandoms);
 			randomCount++;
 			for (int j = 0; j < index; j++) {
-				if (a[j] == randomNo) {
+				if (arrayOfRandoms[j] == randomNo) {
 					flag = 1;
 				}
 			}
 			if (flag == 0) {
-				a[index] = randomNo;
+				arrayOfRandoms[index] = randomNo;
 				index++;
 			}
 			flag = 0;
 		}
 		System.out.println(randomCount);
-		for (int i : a) {
+		for (int i : arrayOfRandoms) {
 			System.out.println(i);
 		}
 
 	}
 
+	/**This method prints prime factors of given number
+	 * @param number
+	 */
 	public static void printPrimeFactors(int number) {
 		for (int factor = 2; factor * factor <= number; factor++) {
 			// if factor is a factor of n, repeatedly divide it out
@@ -133,11 +181,21 @@ public class Utility {
 			System.out.println();
 	}
 
+	/**This method calculates distance from xPoint to yPoint
+	 * @param xPoint -Point x
+	 * @param yPoint -Point y 
+	 * @return returns distance
+	 */
 	public static double getDistance(int xPoint, int yPoint) {
 		double distance = Math.sqrt(Math.pow(xPoint, 2) + Math.pow(yPoint, 2));
 		return distance;
 	}
 
+	/**This method prints quadriatic roots 
+	 * @param aValue 
+	 * @param bValue
+	 * @param cValue
+	 */
 	public static void printQuadriaticRoots(int aValue, int bValue, int cValue) {
 		double delta = bValue * bValue - 4 * aValue * cValue;
 		if (delta > 0) {
@@ -152,6 +210,12 @@ public class Utility {
 		}
 	}
 
+	/**This method calculates windchill.
+	 * @param temprature -temperature of wind 
+	 * @param windspeed	 -Velocity of wind
+	 * @return returns windchill
+	 * 
+	 */
 	public static double getWindChill(double temprature, double windspeed) {
 		double windChill;
 		windChill = 35.74 + 0.6215 * temprature + (0.4275 * temprature - 35.75)
@@ -159,6 +223,11 @@ public class Utility {
 		return windChill;
 	}
 
+	/**This method reads integer array from user and print it
+	 * @param array -Array to read values in
+	 * @param rows	-Number of rows
+	 * @param cols	-Number of columns
+	 */
 	public static void getArray(int array[][], int rows, int cols) {
 		System.out.println("Enter Array elements");
 		for (int i = 0; i < rows; i++) {
@@ -169,7 +238,11 @@ public class Utility {
 		printArray(array, rows, cols);
 
 	}
-
+	/**This method reads double array from user and print it
+	 * @param array -Array to read values in
+	 * @param rows	-Number of rows
+	 * @param cols	-Number of columns
+	 */
 	public static void getArray(double array[][], int rows, int cols) {
 		System.out.println("Enter Array elements");
 		for (int i = 0; i < rows; i++) {
@@ -181,6 +254,11 @@ public class Utility {
 
 	}
 
+	/**This method reads boolean array from user and print it
+	 * @param array
+	 * @param rows
+	 * @param cols
+	 */
 	public static void getArray(boolean array[][], int rows, int cols) {
 		System.out.println("Enter Array elements");
 		for (int i = 0; i < rows; i++) {
@@ -191,6 +269,10 @@ public class Utility {
 		printArray(array, rows, cols);
 
 	}
+	
+	/**This method Prints given array
+	 * @param array
+	 */
 	public static <T> void printArray(T array[][]) {
 		System.out.println("==Array==");
 		for (int i = 0; i < array.length; i++) {
@@ -201,6 +283,12 @@ public class Utility {
 		}
 
 	}
+
+	/**This method prints given array
+	 * @param array
+	 * @param rows
+	 * @param cols
+	 */
 	public static void printArray(int array[][], int rows, int cols) {
 		System.out.println("==Array==");
 		for (int i = 0; i < rows; i++) {
@@ -212,6 +300,11 @@ public class Utility {
 
 	}
 
+	/**This method prints given array 
+	 * @param array
+	 * @param rows
+	 * @param cols
+	 */
 	public static void printArray(double array[][], int rows, int cols) {
 
 		if (array.length > 0) {
@@ -224,6 +317,11 @@ public class Utility {
 		}
 	}
 
+	/**This method prints given array 
+	 * @param array
+	 * @param rows
+	 * @param cols
+	 */
 	public static void printArray(boolean array[][], int rows, int cols) {
 
 		if (array.length > 0) {
@@ -236,6 +334,9 @@ public class Utility {
 		}
 	}
 
+	/**This method find and prints triplets whose addition is zero 
+	 * @param array
+	 */
 	public static void findDistinctTriplets(int array[]) {
 		int count = 0;
 		for (int i = 0; i < array.length; i++) {
@@ -253,16 +354,20 @@ public class Utility {
 				+ count);
 	}
 
+	
 	public static void stopwatchSimulator() {
 		long startTime = System.currentTimeMillis();
-		for (int i = 0; i < 10000000; i++) {
-			scanner=new Scanner(System.in);
+		for (int i = 0; i < 10000; i++) {
+			
 		}
 		long stopTime = System.currentTimeMillis();
 		long Time = stopTime - startTime;
 		System.out.println("Total time required" + Time);
 	}
-
+	
+	/**This method start tic tac toe game
+	 * @return - final result String
+	 */
 	public static String ticTacToe() {
 		boolean userTurn = false;
 		int gameArray[][] = new int[3][3];
@@ -372,5 +477,29 @@ public class Utility {
 		}
 		return false;
 	}
+	/**This adds all possible permutaions in combinations
+	 * @param word        
+	 * @param combinations
+	 * @param startIndex
+	 * @param endIndex
+	 */
+	public static void stringPermutations(char[] word,ArrayList combinations,int startIndex,int endIndex) {
+		if(startIndex==endIndex) {
+			combinations.add(String.valueOf(word));
+		}	
+		else {
+			for(int i=startIndex;i<=endIndex;i++) {
+				swap(word,startIndex,i);
+				stringPermutations( word,combinations, startIndex+1, endIndex);
+				swap(word,startIndex,i);
+			}
+		}
+	}
 
+	public static void swap(char[] array,int i,int j) {
+		char temp=array[i];
+		array[i]=array[j];
+		array[j]=temp;
+		
+	}
 }
